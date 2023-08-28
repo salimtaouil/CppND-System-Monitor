@@ -24,11 +24,14 @@ Processor& System::Cpu() { return cpu_; }
 vector<Process>& System::Processes() {
     vector<int> proc_pids = LinuxParser::Pids();
 
+    vector<Process> procs{};
+
     for (auto pid : proc_pids){
-        processes_.push_back(Process(pid));
+        procs.push_back(Process(pid));
     }
 
-    //sort(processes_.begin(),processes_.end());
+    sort(procs.begin(),procs.end(), [](Process& a,Process& b){return (a.CpuUtilization() > b.CpuUtilization());});
+    processes_ = procs;
 
     return processes_; 
 }

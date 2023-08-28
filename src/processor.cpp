@@ -1,4 +1,8 @@
 #include "processor.h"
 
 // TODO: Return the aggregate CPU utilization
-float Processor::Utilization() { return 0.0; }
+float Processor::Utilization() {
+    float totald = LinuxParser::Jiffies()  + LinuxParser::ActiveJiffies();
+    float idled = LinuxParser::IdleJiffies();
+    return (totald - idled) / totald;
+}

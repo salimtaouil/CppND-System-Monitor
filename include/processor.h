@@ -9,6 +9,9 @@ class Processor {
 
   // TODO: Declare any necessary private members
  private:
+ float previdle_ = 0;
+ float prevnonidle_ = 0;
+ float prevtotal_ = 0;
 };
 
 #endif
